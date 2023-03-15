@@ -1,0 +1,88 @@
+<!--
+  Rectangle Query Functions
+  Bart Trzynadlowski, 2023
+
+  Functions for finding continguous rectangular regions within a uniform grid,
+  such as e.g. an occupancy grid generated from a heightmap.
+-->
+
+<html>
+  <head>
+    <style>
+      canvas              { float: left; border: 1px solid black; margin-left: 10px; margin-right: 10px; }
+      .control_panel      { float: left; }
+      .title              { font-weight: bold; }
+    </style>
+    <script type="text/javascript" src="js/jquery.2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/occupancy_grid.js"></script>
+    <script type="text/javascript" src="js/max_rectangle.js"></script>
+    <script type="text/javascript" src="js/rectangular_partition.js"></script>
+    <script type="text/javascript" src="js/rectangle_search.js"></script>
+    <script type="text/javascript" src="js/edit.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function()
+      {
+        rectangleSearchUI();
+      });
+    </script>
+    <title>Rectangle Query Functions</title>
+  </head>
+
+  <body>
+
+    <h1>Rectangle Query Functions</h1>
+
+    <canvas id="Viewport" width="1200" height="1200"></canvas>
+
+    <div class="control_panel">
+
+      <div class="title">Control Panel</div>
+
+      <div>
+        <span>Operation:</span>
+        <select id="Operation">
+          <option value="DrawBlock">Draw Block</option>
+        </select>
+      </div>
+
+      <div>
+        <button id="ResetButton" type="button">Reset</button>
+      </div>
+
+      <div>
+        <button id="PrevResultButton" type="button">&lt;&lt;</button>
+        <button id="NextResultButton" type="button">&gt;&gt;</button>
+        <b>Results: </b><span id="DisplayedResults">none</span>
+      </div>
+
+      <div>
+        <button id="MaximumRectangleButton" type="button">Maximum Rectangle</button>
+      </div>
+
+      <div>
+        <button id="PartitionButton" type="button">Partition</button>
+        <select id="PartitionAlgorithm">
+          <option value="Greedy">Greedy</option>
+          <option value="IterativeMaximum" selected="selected">Iterative Maximum</option>
+        </select>
+      </div>
+
+      <div>
+        <button id="SearchButton" type="button">Search</button>
+        <select id="SearchAlgorithm">
+          <option value="MinimumDimensions" selected="selected">Minimum Dimensions</option>
+          <option value="ExactDimensions">Exact</option>
+        </select>
+        <span>Width:</span>
+        <input id="WidthField"></input>
+        <span>Height:</span>
+        <input id="HeightField"></input>
+      </div>
+
+    </div>
+
+    <div style="clear:both"><b>Cursor coordinate: </b><span id="Coords"></span></div>
+
+  </body>
+</html>
